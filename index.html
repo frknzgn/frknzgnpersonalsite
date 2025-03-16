@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FO | Furkan ÖZGÜN</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <!-- Favicon için JS ile dinamik olarak oluşturulacak "FO" logosu -->
+    <script>
+        // Sayfanın yüklenmesini bekle
+        document.addEventListener('DOMContentLoaded', function() {
+            // Canvas elementi oluştur
+            const canvas = document.createElement('canvas');
+            canvas.width = 64;
+            canvas.height = 64;
+            const ctx = canvas.getContext('2d');
+            
+            // Arkaplan rengi - navbar logosu ile uyumlu olacak
+            ctx.fillStyle = '#7e3ff2'; // var(--primary-color) değeri
+            ctx.fillRect(0, 0, 64, 64);
+            
+            // "FO" metni için stil
+            ctx.font = 'bold 32px Orbitron, sans-serif';
+            ctx.fillStyle = 'white';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // Metni canvas'a çiz
+            ctx.fillText('FO', 32, 32);
+            
+            // Işıltı efekti eklemek için ikinci bir katman çiziyoruz
+            const glow = ctx.createRadialGradient(32, 32, 5, 32, 32, 32);
+            glow.addColorStop(0, 'rgba(126, 63, 242, 0.5)');
+            glow.addColorStop(1, 'rgba(126, 63, 242, 0)');
+            
+            // Yeni canvas oluştur (ışıltı için)
+            const glowCanvas = document.createElement('canvas');
+            glowCanvas.width = 64;
+            glowCanvas.height = 64;
+            const glowCtx = glowCanvas.getContext('2d');
+            
+            // Işıltıyı çiz
+            glowCtx.fillStyle = glow;
+            glowCtx.fillRect(0, 0, 64, 64);
+            
+            // Ana canvas'a ekle
+            ctx.globalCompositeOperation = 'lighter';
+            ctx.drawImage(glowCanvas, 0, 0);
+            
+            // Favicon olarak ayarla
+            const link = document.createElement('link');
+            link.rel = 'icon';
+            link.type = 'image/png';
+            link.href = canvas.toDataURL('image/png');
+            document.head.appendChild(link);
+        });
+    </script>
+</head>
+<body>
+    <div class="stars-container" id="planets-background">
+        <!-- Yüzen gezegenler burada dinamik olarak script.js tarafından eklenecek -->
+    </div>
+
+    <!-- Mevcut astronot -->
+    <div class="floating-astronaut">
+        <img src="images/astronaut.png" alt="Astronaut">
+    </div>
+    
+    <!-- İkinci astronot -->
+    <div class="floating-astronaut-2">
+        <img src="images/astronaut.png" alt="Astronaut 2">
+    </div>
+    
+    <!-- Üçüncü astronot -->
+    <div class="floating-astronaut-3">
+        <img src="images/astronaut.png" alt="Astronaut 3">
+    </div>
+
+    <!-- Gezegen PNG'leri ile orbiting planets -->
+    <div class="orbiting-planets">
+        <div class="planet planet-1">
+            <img src="images/planet1.png" alt="Planet 1">
+        </div>
+        <div class="planet planet-2">
+            <img src="images/planet2.png" alt="Planet 2">
+        </div>
+        <div class="planet planet-3">
+            <img src="images/planet3.png" alt="Planet 3">
+        </div>
+        <div class="planet planet-4">
+            <img src="images/planet4.png" alt="Planet 4">
+        </div>
+        <div class="planet planet-5">
+            <img src="images/planet5.png" alt="Planet 5">
+        </div>
+    </div>
+
+    <!-- Mevcut uzay mekiği -->
+    <div class="spacecraft">
+        <img src="images/spacecraft.png" alt="Spacecraft">
+    </div>
+    
+    <!-- İkinci uzay mekiği -->
+    <div class="spacecraft-2">
+        <img src="images/spacecraft.png" alt="Spacecraft 2">
+    </div>
+    
+    <!-- Üçüncü uzay mekiği -->
+    <div class="spacecraft-3">
+        <img src="images/spacecraft.png" alt="Spacecraft 3">
+    </div>
+
+    <header>
+        <div class="logo">FO</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Ana Sayfa</a></li>
+                <li><a href="#about">Hakkımda</a></li>
+                <li><a href="#skills">Yetenekler</a></li>
+                <li><a href="#projects">Projeler</a></li>
+                <li><a href="#contact">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero-section">
+            <div class="glitch-container">
+                <h1 class="glitch" data-text="Furkan ÖZGÜN">Furkan ÖZGÜN</h1>
+            </div>
+            <div class="typing-container">
+                <h2 class="typing-text"></h2>
+            </div>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn glow-btn">Projelerim</a>
+                <a href="#contact" class="btn outline-btn">İletişime Geç</a>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="section-header">
+                <h2>Hakkımda</h2>
+                <div class="separator"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-img">
+                    <div class="hologram-effect">
+                        <img src="images/default.png" alt="Furkan ÖZGÜN">
+                    </div>
+                </div>
+                <div class="about-text">
+                    <p>Merhaba! Ben Furkan ÖZGÜN, yazılım geliştirme tutkusu ile çalışan bir yazılım mühendisiyim. Yapay zeka, uzay teknolojileri ve yenilikçi çözümler geliştirme konusunda deneyimli bir profesyonelim.</p>
+                    <p>Karmaşık problemleri çözmekten ve geleceğin teknolojilerini şekillendirmekten büyük keyif alıyorum. Her projeyi, insanlığın dijital evriminde ileri bir adım olarak görüyorum.</p>
+                    <div class="personal-info">
+                        <div class="info-item"><span>Yaş:</span> 28</div>
+                        <div class="info-item"><span>E-posta:</span> frknzgn9@gmail.com</div>
+                        <div class="info-item"><span>Konum:</span> İzmir, Türkiye</div>
+                        <div class="info-item"><span>Freelance:</span> Bir bakarız</div>
+                    </div>
+                    <a href="#" class="btn glow-btn">CV'mi İndir</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills-section">
+            <div class="section-header">
+                <h2>Beceriler & Teknolojiler</h2>
+                <div class="separator"></div>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Programlama Dilleri</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fab fa-python"></i></div>
+                            <div class="skill-name">Python</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fab fa-js"></i></div>
+                            <div class="skill-name">JavaScript</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fab fa-java"></i></div>
+                            <div class="skill-name">Java</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fab fa-cuttlefish"></i></div>
+                            <div class="skill-name">C#</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Yapay Zeka & Veri Bilimi</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-name">TensorFlow</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">PyTorch</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Makine Öğrenmesi</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Doğal Dil İşleme</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Web Geliştirme</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fab fa-react"></i></div>
+                            <div class="skill-name">React</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fab fa-node-js"></i></div>
+                            <div class="skill-name">Node.js</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fab fa-vuejs"></i></div>
+                            <div class="skill-name">Vue.js</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+ <!--<section id="projects" class="projects-section">
+            <div class="section-header">
+                <h2>Projelerim</h2>
+                <div class="separator"></div>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="images/default.png" alt="AI Proje">
+                    </div>
+                    <div class="project-content">
+                        <h3>Yapay Zeka Asistanı</h3>
+                        <p>Doğal dil işleme tabanlı bir yapay zeka asistanı, müşteri hizmetleri ve kişisel verimlilik için geliştirildi.</p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>TensorFlow</span>
+                            <span>NLP</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn small-btn">Demo</a>
+                            <a href="#" class="btn small-btn outline-btn">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="images/default.png" alt="Uzay Teknolojisi Proje">
+                    </div>
+                    <div class="project-content">
+                        <h3>Uzay Verileri Görselleştirme</h3>
+                        <p>NASA API'lerini kullanarak uzay verilerini interaktif 3D görselleştirme ile sunan bir web uygulaması.</p>
+                        <div class="project-tech">
+                            <span>JavaScript</span>
+                            <span>Three.js</span>
+                            <span>WebGL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn small-btn">Demo</a>
+                            <a href="#" class="btn small-btn outline-btn">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="images/default.png" alt="Teknoloji Proje">
+                    </div>
+                    <div class="project-content">
+                        <h3>Akıllı Ev Kontrol Sistemi</h3>
+                        <p>IoT cihazları için bulut tabanlı, makine öğrenmesi destekli akıllı ev otomasyonu sistemi.</p>
+                        <div class="project-tech">
+                            <span>IoT</span>
+                            <span>React</span>
+                            <span>Node.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn small-btn">Demo</a>
+                            <a href="#" class="btn small-btn outline-btn">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="center-button">
+                <a href="#" class="btn glow-btn">Tüm Projeleri Gör</a>
+            </div>
+        </section>-->
+
+        <section id="contact" class="contact-section">
+            <div class="section-header">
+                <h2>İletişime Geç</h2>
+                <div class="separator"></div>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="text">
+                            <h3>Konum</h3>
+                            <p>İzmir, Türkiye</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon"><i class="fas fa-envelope"></i></div>
+                        <div class="text">
+                            <h3>Email</h3>
+                            <p>furkan@example.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon"><i class="fas fa-phone"></i></div>
+                        <div class="text">
+                            <h3>Telefon</h3>
+                            <p>+90 555 123 4567</p>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Adınız" required>
+                            <div class="form-line"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email Adresiniz" required>
+                            <div class="form-line"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Konu" required>
+                            <div class="form-line"></div>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Mesajınız" required></textarea>
+                            <div class="form-line"></div>
+                        </div>
+                        <button type="submit" class="btn glow-btn">Gönder</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2023 Furkan ÖZGÜN. Tüm Hakları Saklıdır.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
